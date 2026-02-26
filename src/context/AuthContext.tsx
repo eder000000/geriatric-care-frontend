@@ -13,8 +13,12 @@ const AuthContext = createContext<AuthContextType | null>(null);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(() => {
-    const stored = localStorage.getItem('ghcs-user');
-    return stored ? JSON.parse(stored) : null;
+    try {
+      const stored = localStorage.getItem('ghcs-user');
+      return stored && stored !== 'undefined' ? JSON.parse(stored) : null;
+    } catch {
+      return null;
+    }
   });
   const [token, setToken] = useState<string | null>(() =>
     localStorage.getItem('ghcs-token')
