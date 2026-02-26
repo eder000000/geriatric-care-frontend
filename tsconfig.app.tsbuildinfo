@@ -1,0 +1,1 @@
+{"root":["./src/App.tsx","./src/main.tsx","./src/api/authService.ts","./src/api/client.ts","./src/components/common/ProtectedRoute.tsx","./src/components/common/RoleGuard.tsx","./src/context/AuthContext.tsx","./src/context/useRole.ts","./src/lib/queryClient.ts","./src/lib/utils.ts","./src/pages/auth/LoginPage.tsx","./src/types/auth.ts"],"errors":true,"version":"5.9.3"}
