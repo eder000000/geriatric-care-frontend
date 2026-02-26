@@ -1,0 +1,97 @@
+{
+  "common": {
+    "loading": "Cargando...",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "create": "Crear",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "actions": "Acciones",
+    "confirm": "Confirmar",
+    "yes": "Sí",
+    "no": "No",
+    "back": "Regresar",
+    "next": "Siguiente",
+    "close": "Cerrar",
+    "status": "Estado",
+    "active": "Activo",
+    "inactive": "Inactivo",
+    "noData": "Sin datos disponibles",
+    "error": "Ocurrió un error",
+    "success": "Operación exitosa"
+  },
+  "nav": {
+    "dashboard": "Panel Principal",
+    "patients": "Pacientes",
+    "medications": "Medicamentos",
+    "carePlans": "Planes de Cuidado",
+    "vitalSigns": "Signos Vitales",
+    "alerts": "Alertas",
+    "logout": "Cerrar Sesión"
+  },
+  "auth": {
+    "email": "Correo Electrónico",
+    "password": "Contraseña",
+    "loginTitle": "Bienvenido de nuevo",
+    "loginSubtitle": "Inicia sesión en tu cuenta",
+    "loginButton": "Iniciar Sesión",
+    "invalidCredentials": "Correo o contraseña inválidos",
+    "sessionExpired": "Tu sesión ha expirado"
+  },
+  "dashboard": {
+    "title": "Panel Principal",
+    "totalPatients": "Total de Pacientes",
+    "activeAlerts": "Alertas Activas",
+    "carePlans": "Planes de Cuidado",
+    "medications": "Medicamentos",
+    "recentAlerts": "Alertas Recientes",
+    "noAlerts": "Sin alertas activas"
+  },
+  "patients": {
+    "title": "Pacientes",
+    "newPatient": "Nuevo Paciente",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "dateOfBirth": "Fecha de Nacimiento",
+    "searchPlaceholder": "Buscar pacientes...",
+    "deactivate": "Desactivar Paciente",
+    "deactivateConfirm": "¿Estás seguro de que deseas desactivar este paciente?"
+  },
+  "medications": {
+    "title": "Medicamentos",
+    "newMedication": "Nuevo Medicamento",
+    "lowStock": "Stock Bajo",
+    "expiringSoon": "Por Vencer",
+    "expired": "Vencido"
+  },
+  "vitalSigns": {
+    "title": "Signos Vitales",
+    "record": "Registrar Signos Vitales",
+    "bloodPressure": "Presión Arterial",
+    "heartRate": "Frecuencia Cardíaca",
+    "temperature": "Temperatura",
+    "oxygenSaturation": "Saturación de Oxígeno",
+    "respiratoryRate": "Frecuencia Respiratoria"
+  },
+  "carePlans": {
+    "title": "Planes de Cuidado",
+    "newCarePlan": "Nuevo Plan de Cuidado",
+    "activate": "Activar",
+    "suspend": "Suspender",
+    "complete": "Completar"
+  },
+  "alerts": {
+    "title": "Alertas",
+    "critical": "Crítico",
+    "warning": "Advertencia",
+    "acknowledge": "Reconocer"
+  },
+  "roles": {
+    "ADMIN": "Administrador",
+    "PHYSICIAN": "Médico",
+    "CAREGIVER": "Cuidador",
+    "FAMILY": "Familiar"
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "search": "Search",
+    "filter": "Filter",
+    "actions": "Actions",
+    "confirm": "Confirm",
+    "yes": "Yes",
+    "no": "No",
+    "back": "Back",
+    "next": "Next",
+    "close": "Close",
+    "status": "Status",
+    "active": "Active",
+    "inactive": "Inactive",
+    "noData": "No data available",
+    "error": "An error occurred",
+    "success": "Operation successful"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "patients": "Patients",
+    "medications": "Medications",
+    "carePlans": "Care Plans",
+    "vitalSigns": "Vital Signs",
+    "alerts": "Alerts",
+    "logout": "Logout"
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Password",
+    "loginTitle": "Welcome back",
+    "loginSubtitle": "Sign in to your account",
+    "loginButton": "Sign in",
+    "invalidCredentials": "Invalid email or password",
+    "sessionExpired": "Your session has expired"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "totalPatients": "Total Patients",
+    "activeAlerts": "Active Alerts",
+    "carePlans": "Care Plans",
+    "medications": "Medications",
+    "recentAlerts": "Recent Alerts",
+    "noAlerts": "No active alerts"
+  },
+  "patients": {
+    "title": "Patients",
+    "newPatient": "New Patient",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "dateOfBirth": "Date of Birth",
+    "searchPlaceholder": "Search patients...",
+    "deactivate": "Deactivate Patient",
+    "deactivateConfirm": "Are you sure you want to deactivate this patient?"
+  },
+  "medications": {
+    "title": "Medications",
+    "newMedication": "New Medication",
+    "lowStock": "Low Stock",
+    "expiringSoon": "Expiring Soon",
+    "expired": "Expired"
+  },
+  "vitalSigns": {
+    "title": "Vital Signs",
+    "record": "Record Vital Signs",
+    "bloodPressure": "Blood Pressure",
+    "heartRate": "Heart Rate",
+    "temperature": "Temperature",
+    "oxygenSaturation": "Oxygen Saturation",
+    "respiratoryRate": "Respiratory Rate"
+  },
+  "carePlans": {
+    "title": "Care Plans",
+    "newCarePlan": "New Care Plan",
+    "activate": "Activate",
+    "suspend": "Suspend",
+    "complete": "Complete"
+  },
+  "alerts": {
+    "title": "Alerts",
+    "critical": "Critical",
+    "warning": "Warning",
+    "acknowledge": "Acknowledge"
+  },
+  "roles": {
+    "ADMIN": "Administrator",
+    "PHYSICIAN": "Physician",
+    "CAREGIVER": "Caregiver",
+    "FAMILY": "Family Member"
+  }
+}
