@@ -3,7 +3,6 @@ export type UserRole = 'ADMIN' | 'PHYSICIAN' | 'CAREGIVER' | 'FAMILY';
 export interface User {
   id: string;
   email: string;
-  username: string;
   firstName: string;
   lastName: string;
   role: UserRole;
@@ -11,7 +10,13 @@ export interface User {
 
 export interface AuthResponse {
   token: string;
-  user: User;
+  type: string;
+  userId: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  role: UserRole;
+  expiresAt: string;
 }
 
 export interface LoginRequest {
