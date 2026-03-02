@@ -89,9 +89,24 @@
   "carePlans": {
     "title": "Planes de Cuidado",
     "newCarePlan": "Nuevo Plan de Cuidado",
-    "activate": "Activar",
-    "suspend": "Suspender",
-    "complete": "Completar"
+    "planTitle": "Título del Plan",
+    "priority": "Prioridad",
+    "startDate": "Fecha de Inicio",
+    "endDate": "Fecha de Fin",
+    "progress": "Progreso",
+    "priorities": {
+      "LOW": "Baja",
+      "MEDIUM": "Media",
+      "HIGH": "Alta",
+      "CRITICAL": "Crítica"
+    },
+    "statuses": {
+      "DRAFT": "Borrador",
+      "ACTIVE": "Activo",
+      "ON_HOLD": "En Pausa",
+      "COMPLETED": "Completado",
+      "CANCELLED": "Cancelado"
+    }
   },
   "alerts": {
     "title": "Alertas",

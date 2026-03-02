@@ -89,9 +89,24 @@
   "carePlans": {
     "title": "Care Plans",
     "newCarePlan": "New Care Plan",
-    "activate": "Activate",
-    "suspend": "Suspend",
-    "complete": "Complete"
+    "planTitle": "Plan Title",
+    "priority": "Priority",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "progress": "Progress",
+    "priorities": {
+      "LOW": "Low",
+      "MEDIUM": "Medium",
+      "HIGH": "High",
+      "CRITICAL": "Critical"
+    },
+    "statuses": {
+      "DRAFT": "Draft",
+      "ACTIVE": "Active",
+      "ON_HOLD": "On Hold",
+      "COMPLETED": "Completed",
+      "CANCELLED": "Cancelled"
+    }
   },
   "alerts": {
     "title": "Alerts",
