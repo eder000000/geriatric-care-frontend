@@ -76,7 +76,8 @@
     "heartRate": "Frecuencia Cardíaca",
     "temperature": "Temperatura",
     "oxygenSaturation": "Saturación de Oxígeno",
-    "respiratoryRate": "Frecuencia Respiratoria"
+    "respiratoryRate": "Frecuencia Respiratoria",
+    "measuredAt": "Fecha/Hora"
   },
   "carePlans": {
     "title": "Planes de Cuidado",

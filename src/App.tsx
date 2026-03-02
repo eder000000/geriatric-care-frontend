@@ -8,6 +8,8 @@ import { LoginPage } from '@/pages/auth/LoginPage';
 import { DashboardPage } from '@/pages/dashboard/DashboardPage';
 import { PatientsPage } from '@/pages/patients/PatientsPage';
 import { PatientDetailPage } from '@/pages/patients/PatientDetailPage';
+import { VitalSignsPage } from '@/pages/vitalsigns/VitalSignsPage';
+import { MedicationsPage } from '@/pages/medications/MedicationsPage';
 
 function App() {
   return (
@@ -25,13 +27,13 @@ function App() {
               }
             >
               <Route index element={<Navigate to="/dashboard" replace />} />
-              <Route path="dashboard"      element={<DashboardPage />} />
-              <Route path="patients"       element={<PatientsPage />} />
-              <Route path="patients/:id"   element={<PatientDetailPage />} />
-              <Route path="vital-signs"    element={<div className="p-4 text-gray-500">Vital Signs — FE-011</div>} />
-              <Route path="medications"    element={<div className="p-4 text-gray-500">Medications — FE-012</div>} />
-              <Route path="care-plans"     element={<div className="p-4 text-gray-500">Care Plans — FE-013</div>} />
-              <Route path="alerts"         element={<div className="p-4 text-gray-500">Alerts — FE-014</div>} />
+              <Route path="dashboard"    element={<DashboardPage />} />
+              <Route path="patients"     element={<PatientsPage />} />
+              <Route path="patients/:id" element={<PatientDetailPage />} />
+              <Route path="vital-signs"  element={<VitalSignsPage />} />
+              <Route path="medications"  element={<MedicationsPage />} />
+              <Route path="care-plans"   element={<div className="p-4 text-gray-500">Care Plans — FE-013</div>} />
+              <Route path="alerts"       element={<div className="p-4 text-gray-500">Alerts — FE-014</div>} />
             </Route>
             <Route path="*" element={<Navigate to="/dashboard" replace />} />
           </Routes>
