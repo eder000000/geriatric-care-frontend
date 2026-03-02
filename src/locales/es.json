@@ -77,7 +77,8 @@
     "temperature": "Temperatura",
     "oxygenSaturation": "Saturación de Oxígeno",
     "respiratoryRate": "Frecuencia Respiratoria",
-    "measuredAt": "Fecha/Hora"
+    "measuredAt": "Fecha/Hora",
+    "heartRateUnit": "lpm"
   },
   "carePlans": {
     "title": "Planes de Cuidado",

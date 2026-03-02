@@ -77,7 +77,8 @@
     "temperature": "Temperature",
     "oxygenSaturation": "Oxygen Saturation",
     "respiratoryRate": "Respiratory Rate",
-    "measuredAt": "Date/Time"
+    "measuredAt": "Date/Time",
+    "heartRateUnit": "bpm"
   },
   "carePlans": {
     "title": "Care Plans",
