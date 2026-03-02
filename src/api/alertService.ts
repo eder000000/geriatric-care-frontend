@@ -1,24 +1,15 @@
 import apiClient from './client';
 
-export interface Alert {
+export interface AlertRule {
   id: string;
-  patientName: string;
-  message: string;
-  severity: 'CRITICAL' | 'WARNING' | 'INFO';
-  status: 'ACTIVE' | 'ACKNOWLEDGED' | 'RESOLVED';
-  triggeredAt: string;
-}
-
-export interface PageResponse<T> {
-  content: T[];
-  totalElements: number;
+  name: string;
+  isActive: boolean;
 }
 
 export const alertService = {
-  getActiveAlerts: async (): Promise<PageResponse<Alert>> => {
-    const response = await apiClient.get('/api/alerts', {
-      params: { status: 'ACTIVE', page: 0, size: 5 }
-    });
+  // Get count of active alert rules as a proxy for "active alerts"
+  getActiveAlertRules: async (): Promise<AlertRule[]> => {
+    const response = await apiClient.get('/api/alert-rules/active');
     return response.data;
   },
 };
