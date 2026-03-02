@@ -139,7 +139,7 @@ export function DashboardPage() {
                     <Badge variant="outline" className="bg-yellow-100 text-yellow-700 border-yellow-200 text-xs">
                       {t('alerts.warning')}
                     </Badge>
-                    <p className="text-sm font-medium text-gray-800">{rule.name}</p>
+                    <p className="text-sm font-medium text-gray-800">{rule.alertMessage.slice(0, 50)}</p>
                   </div>
                   <Badge variant="outline" className="bg-green-100 text-green-700 text-xs">
                     {t('common.active')}

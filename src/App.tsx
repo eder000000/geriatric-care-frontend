@@ -11,6 +11,7 @@ import { PatientDetailPage } from '@/pages/patients/PatientDetailPage';
 import { VitalSignsPage } from '@/pages/vitalsigns/VitalSignsPage';
 import { MedicationsPage } from '@/pages/medications/MedicationsPage';
 import { CarePlansPage } from '@/pages/careplans/CarePlansPage';
+import { AlertsPage } from '@/pages/alerts/AlertsPage';
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
               <Route path="vital-signs"  element={<VitalSignsPage />} />
               <Route path="medications"  element={<MedicationsPage />} />
               <Route path="care-plans"   element={<CarePlansPage />} />
-              <Route path="alerts"       element={<div className="p-4 text-gray-500">Alerts — FE-014</div>} />
+              <Route path="alerts"       element={<AlertsPage />} />
             </Route>
             <Route path="*" element={<Navigate to="/dashboard" replace />} />
           </Routes>

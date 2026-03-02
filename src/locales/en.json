@@ -112,7 +112,7 @@
     "title": "Alerts",
     "critical": "Critical",
     "warning": "Warning",
-    "acknowledge": "Acknowledge"
+    "info": "Info"
   },
   "roles": {
     "ADMIN": "Administrator",

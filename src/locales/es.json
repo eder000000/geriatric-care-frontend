@@ -110,9 +110,9 @@
   },
   "alerts": {
     "title": "Alertas",
-    "critical": "Crítico",
+    "critical": "Crítica",
     "warning": "Advertencia",
-    "acknowledge": "Reconocer"
+    "info": "Información"
   },
   "roles": {
     "ADMIN": "Administrador",
