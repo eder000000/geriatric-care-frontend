@@ -67,7 +67,13 @@
     "newMedication": "New Medication",
     "lowStock": "Low Stock",
     "expiringSoon": "Expiring Soon",
-    "expired": "Expired"
+    "expired": "Expired",
+    "name": "Name",
+    "dosage": "Dosage",
+    "expirationDate": "Expiration Date",
+    "quantity": "Stock",
+    "reorderLevel": "Reorder Level",
+    "form": "Form"
   },
   "vitalSigns": {
     "title": "Vital Signs",
