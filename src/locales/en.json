@@ -58,7 +58,9 @@
     "searchPlaceholder": "Search patients...",
     "medicalConditions": "Medical Conditions",
     "deactivate": "Deactivate Patient",
-    "deactivateConfirm": "Are you sure you want to deactivate this patient?"
+    "deactivateConfirm": "Are you sure you want to deactivate this patient?",
+    "emergencyContact": "Emergency Contact",
+    "emergencyPhone": "Emergency Phone"
   },
   "medications": {
     "title": "Medications",
