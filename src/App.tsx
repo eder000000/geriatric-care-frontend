@@ -12,6 +12,7 @@ import { VitalSignsPage } from '@/pages/vitalsigns/VitalSignsPage';
 import { MedicationsPage } from '@/pages/medications/MedicationsPage';
 import { CarePlansPage } from '@/pages/careplans/CarePlansPage';
 import { AlertsPage } from '@/pages/alerts/AlertsPage';
+import { NotFoundPage } from '@/pages/NotFoundPage';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/404"   element={<NotFoundPage />} />
             <Route path="/" element={<ProtectedRoute><AppShell /></ProtectedRoute>}>
               <Route index element={<Navigate to="/dashboard" replace />} />
               <Route path="dashboard"    element={<DashboardPage />} />
@@ -30,7 +32,7 @@ function App() {
               <Route path="care-plans"   element={<CarePlansPage />} />
               <Route path="alerts"       element={<AlertsPage />} />
             </Route>
-            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>

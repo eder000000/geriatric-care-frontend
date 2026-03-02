@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import { medicationService } from '@/api/medicationService';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -49,12 +50,14 @@ export function MedicationsPage() {
       quantityInStock: Number(data.quantityInStock),
       reorderLevel: Number(data.reorderLevel),
     }),
-    onSuccess: () => {
+    onSuccess: (med) => {
       queryClient.invalidateQueries({ queryKey: ['medications'] });
       queryClient.invalidateQueries({ queryKey: ['medications-count'] });
       setShowForm(false);
       reset();
+      toast.success(`Medicamento "${med.name}" creado correctamente`);
     },
+    onError: () => toast.error('Error al crear el medicamento'),
   });
 
   const onSubmit = (data: MedForm) => createMutation.mutate(data);
