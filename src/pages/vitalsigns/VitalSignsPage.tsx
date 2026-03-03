@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
-import { toast } from 'sonner';
 import { vitalSignService } from '@/api/vitalSignService';
 import { patientService } from '@/api/patientService';
 import { Button } from '@/components/ui/button';
@@ -13,7 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Activity, Plus, Heart, Thermometer, Wind } from 'lucide-react';
+import { Activity, Plus, Heart, Thermometer, Wind, Droplets } from 'lucide-react';
 import { useRole } from '@/context/useRole';
 
 interface VitalForm {
@@ -23,6 +22,7 @@ interface VitalForm {
   temperature: string;
   oxygenSaturation: string;
   respiratoryRate: string;
+  glucose: string;
   notes: string;
 }
 
@@ -64,9 +64,12 @@ export function VitalSignsPage() {
       temperature: data.temperature ? Number(data.temperature) : undefined,
       oxygenSaturation: data.oxygenSaturation ? Number(data.oxygenSaturation) : undefined,
       respiratoryRate: data.respiratoryRate ? Number(data.respiratoryRate) : undefined,
+      glucose: data.glucose ? Number(data.glucose) : undefined,
       notes: data.notes || undefined,
     });
   };
+
+  const latest = vitalSigns?.[0];
 
   return (
     <div>
@@ -86,10 +89,10 @@ export function VitalSignsPage() {
 
       <Card className="mb-4">
         <CardContent className="p-4">
-          <Label className="text-sm text-gray-600 mb-2 block">Seleccionar Paciente</Label>
+          <Label className="text-sm text-gray-600 mb-2 block">{t('vitalSigns.selectPatient')}</Label>
           <Select onValueChange={setSelectedPatient} value={selectedPatient}>
             <SelectTrigger className="w-full md:w-80">
-              <SelectValue placeholder="Selecciona un paciente..." />
+              <SelectValue placeholder={t('vitalSigns.selectPatientPlaceholder')} />
             </SelectTrigger>
             <SelectContent>
               {patients?.content.map(p => (
@@ -100,13 +103,51 @@ export function VitalSignsPage() {
         </CardContent>
       </Card>
 
-      {vitalSigns && vitalSigns.length > 0 && (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+      {latest && (
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-4">
           {[
-            { label: t('vitalSigns.bloodPressure'), value: vitalSigns[0].bloodPressureSystolic ? `${vitalSigns[0].bloodPressureSystolic}/${vitalSigns[0].bloodPressureDiastolic}` : '—', unit: 'mmHg', icon: Heart, color: 'text-red-500' },
-            { label: t('vitalSigns.heartRate'), value: String(vitalSigns[0].heartRate ?? '—'), unit: 'bpm', icon: Activity, color: 'text-pink-500' },
-            { label: t('vitalSigns.temperature'), value: String(vitalSigns[0].temperature ?? '—'), unit: '°C', icon: Thermometer, color: 'text-orange-500' },
-            { label: t('vitalSigns.oxygenSaturation'), value: String(vitalSigns[0].oxygenSaturation ?? '—'), unit: '%', icon: Wind, color: 'text-blue-500' },
+            {
+              label: t('vitalSigns.bloodPressure'),
+              value: latest.bloodPressureSystolic ? `${latest.bloodPressureSystolic}/${latest.bloodPressureDiastolic}` : '—',
+              unit: 'mmHg',
+              icon: Heart,
+              color: 'text-red-500',
+            },
+            {
+              label: t('vitalSigns.heartRate'),
+              value: String(latest.heartRate ?? '—'),
+              unit: 'lpm',
+              icon: Activity,
+              color: 'text-pink-500',
+            },
+            {
+              label: t('vitalSigns.temperature'),
+              value: String(latest.temperature ?? '—'),
+              unit: '°C',
+              icon: Thermometer,
+              color: 'text-orange-500',
+            },
+            {
+              label: t('vitalSigns.oxygenSaturation'),
+              value: String(latest.oxygenSaturation ?? '—'),
+              unit: '%',
+              icon: Wind,
+              color: 'text-blue-500',
+            },
+            {
+              label: t('vitalSigns.respiratoryRate'),
+              value: String(latest.respiratoryRate ?? '—'),
+              unit: 'rpm',
+              icon: Wind,
+              color: 'text-teal-500',
+            },
+            {
+              label: t('vitalSigns.glucose'),
+              value: String(latest.glucose ?? '—'),
+              unit: 'mg/dL',
+              icon: Droplets,
+              color: 'text-purple-500',
+            },
           ].map(({ label, value, unit, icon: Icon, color }) => (
             <Card key={label}>
               <CardContent className="p-4">
@@ -125,16 +166,16 @@ export function VitalSignsPage() {
 
       <Card>
         <CardHeader className="pb-3">
-          <CardTitle className="text-base">Historial</CardTitle>
+          <CardTitle className="text-base">{t('vitalSigns.history')}</CardTitle>
         </CardHeader>
         <CardContent className="p-0">
           {!selectedPatient ? (
             <div className="text-center py-12 text-gray-400">
               <Activity className="w-8 h-8 mx-auto mb-2 opacity-40" />
-              <p className="text-sm">Selecciona un paciente para ver sus signos vitales</p>
+              <p className="text-sm">{t('vitalSigns.selectPatient')}</p>
             </div>
           ) : isLoading ? (
-            <div className="p-4 space-y-2">{[1,2,3].map(i => <Skeleton key={i} className="h-10 w-full" />)}</div>
+            <div className="p-4 space-y-2">{[1, 2, 3].map(i => <Skeleton key={i} className="h-10 w-full" />)}</div>
           ) : !vitalSigns?.length ? (
             <div className="text-center py-12 text-gray-400">
               <p className="text-sm">{t('common.noData')}</p>
@@ -148,6 +189,8 @@ export function VitalSignsPage() {
                   <TableHead>{t('vitalSigns.heartRate')}</TableHead>
                   <TableHead>{t('vitalSigns.temperature')}</TableHead>
                   <TableHead>{t('vitalSigns.oxygenSaturation')}</TableHead>
+                  <TableHead>{t('vitalSigns.respiratoryRate')}</TableHead>
+                  <TableHead>{t('vitalSigns.glucose')}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -157,7 +200,9 @@ export function VitalSignsPage() {
                     <TableCell>{v.bloodPressureSystolic ? `${v.bloodPressureSystolic}/${v.bloodPressureDiastolic}` : '—'}</TableCell>
                     <TableCell>{v.heartRate ?? '—'}</TableCell>
                     <TableCell>{v.temperature ?? '—'}</TableCell>
-                    <TableCell>{v.oxygenSaturation ?? '—'}%</TableCell>
+                    <TableCell>{v.oxygenSaturation != null ? `${v.oxygenSaturation}%` : '—'}</TableCell>
+                    <TableCell>{v.respiratoryRate ?? '—'}</TableCell>
+                    <TableCell>{v.glucose ?? '—'}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
@@ -167,22 +212,22 @@ export function VitalSignsPage() {
       </Card>
 
       <Dialog open={showForm} onOpenChange={setShowForm}>
-        <DialogContent className="max-w-md">
+        <DialogContent className="max-w-md bg-white">
           <DialogHeader>
             <DialogTitle>{t('vitalSigns.record')}</DialogTitle>
           </DialogHeader>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <Label className="text-xs">{t('vitalSigns.bloodPressure')} Sistólica</Label>
+                <Label className="text-xs">{t('vitalSigns.bloodPressure')} — {t('vitalSigns.systolic')}</Label>
                 <Input type="number" placeholder="120" {...register('bloodPressureSystolic')} />
               </div>
               <div>
-                <Label className="text-xs">Diastólica</Label>
+                <Label className="text-xs">{t('vitalSigns.bloodPressure')} — {t('vitalSigns.diastolic')}</Label>
                 <Input type="number" placeholder="80" {...register('bloodPressureDiastolic')} />
               </div>
               <div>
-                <Label className="text-xs">{t('vitalSigns.heartRate')} (bpm)</Label>
+                <Label className="text-xs">{t('vitalSigns.heartRate')} (lpm)</Label>
                 <Input type="number" placeholder="72" {...register('heartRate')} />
               </div>
               <div>
@@ -196,6 +241,10 @@ export function VitalSignsPage() {
               <div>
                 <Label className="text-xs">{t('vitalSigns.respiratoryRate')} (rpm)</Label>
                 <Input type="number" placeholder="16" {...register('respiratoryRate')} />
+              </div>
+              <div className="col-span-2">
+                <Label className="text-xs">{t('vitalSigns.glucose')} (mg/dL)</Label>
+                <Input type="number" placeholder="100" {...register('glucose')} />
               </div>
             </div>
             <div className="flex justify-end gap-2 pt-2">

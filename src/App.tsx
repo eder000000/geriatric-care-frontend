@@ -8,11 +8,11 @@ import { LoginPage } from '@/pages/auth/LoginPage';
 import { DashboardPage } from '@/pages/dashboard/DashboardPage';
 import { PatientsPage } from '@/pages/patients/PatientsPage';
 import { PatientDetailPage } from '@/pages/patients/PatientDetailPage';
+import { PatientFormPage } from '@/pages/patients/PatientFormPage';
 import { VitalSignsPage } from '@/pages/vitalsigns/VitalSignsPage';
 import { MedicationsPage } from '@/pages/medications/MedicationsPage';
 import { CarePlansPage } from '@/pages/careplans/CarePlansPage';
 import { AlertsPage } from '@/pages/alerts/AlertsPage';
-import { NotFoundPage } from '@/pages/NotFoundPage';
 
 function App() {
   return (
@@ -21,18 +21,26 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/404"   element={<NotFoundPage />} />
-            <Route path="/" element={<ProtectedRoute><AppShell /></ProtectedRoute>}>
+            <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <AppShell />
+                </ProtectedRoute>
+              }
+            >
               <Route index element={<Navigate to="/dashboard" replace />} />
-              <Route path="dashboard"    element={<DashboardPage />} />
-              <Route path="patients"     element={<PatientsPage />} />
-              <Route path="patients/:id" element={<PatientDetailPage />} />
-              <Route path="vital-signs"  element={<VitalSignsPage />} />
-              <Route path="medications"  element={<MedicationsPage />} />
-              <Route path="care-plans"   element={<CarePlansPage />} />
-              <Route path="alerts"       element={<AlertsPage />} />
+              <Route path="dashboard"         element={<DashboardPage />} />
+              <Route path="patients"          element={<PatientsPage />} />
+              <Route path="patients/new"      element={<PatientFormPage />} />
+              <Route path="patients/:id"      element={<PatientDetailPage />} />
+              <Route path="patients/:id/edit" element={<PatientFormPage />} />
+              <Route path="vital-signs"       element={<VitalSignsPage />} />
+              <Route path="medications"       element={<MedicationsPage />} />
+              <Route path="care-plans"        element={<CarePlansPage />} />
+              <Route path="alerts"            element={<AlertsPage />} />
             </Route>
-            <Route path="*" element={<NotFoundPage />} />
+            <Route path="*" element={<Navigate to="/dashboard" replace />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>

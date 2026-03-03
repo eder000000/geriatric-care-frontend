@@ -3,7 +3,8 @@ import { Button } from '@/components/ui/button';
 
 export function LanguageSwitcher() {
   const { i18n } = useTranslation();
-  const isSpanish = (i18n.language ?? 'es').startsWith('es');
+  const isSpanish = i18n.language.startsWith('es');
+
   return (
     <Button
       variant="ghost"

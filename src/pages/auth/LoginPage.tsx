@@ -59,7 +59,7 @@ export function LoginPage() {
           <p className="text-blue-100 text-sm mt-1">Sistema de Gestión / Management System</p>
         </div>
 
-        <Card className="shadow-2xl border-0">
+        <Card className="shadow-2xl border-0 bg-white">
           <CardHeader className="space-y-1 pb-4">
             <div className="flex items-center justify-between">
               <CardTitle className="text-xl">{t('auth.loginTitle')}</CardTitle>

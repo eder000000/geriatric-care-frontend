@@ -1,5 +1,4 @@
 import apiClient from './client';
-
 export interface VitalSign {
   id: string;
   patientId: string;
@@ -10,10 +9,10 @@ export interface VitalSign {
   temperature: number | null;
   respiratoryRate: number | null;
   oxygenSaturation: number | null;
+  glucose: number | null;
   notes: string | null;
   recordedBy: string;
 }
-
 export interface CreateVitalSignRequest {
   patientId: string;
   bloodPressureSystolic?: number;
@@ -22,9 +21,9 @@ export interface CreateVitalSignRequest {
   temperature?: number;
   respiratoryRate?: number;
   oxygenSaturation?: number;
+  glucose?: number;
   notes?: string;
 }
-
 export const vitalSignService = {
   getByPatient: async (patientId: string): Promise<VitalSign[]> => {
     const response = await apiClient.get(`/api/vital-signs/patient/${patientId}`);

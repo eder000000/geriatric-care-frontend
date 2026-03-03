@@ -56,24 +56,22 @@
     "lastName": "Apellido",
     "dateOfBirth": "Fecha de Nacimiento",
     "searchPlaceholder": "Buscar pacientes...",
-    "medicalConditions": "Condiciones Médicas",
     "deactivate": "Desactivar Paciente",
     "deactivateConfirm": "¿Estás seguro de que deseas desactivar este paciente?",
+    "medicalConditions": "Condiciones Médicas",
     "emergencyContact": "Contacto de Emergencia",
-    "emergencyPhone": "Teléfono de Emergencia"
+    "emergencyContactName": "Nombre del Contacto",
+    "emergencyPhone": "Teléfono de Emergencia",
+    "personalInfo": "Información Personal",
+    "editPatient": "Editar Paciente",
+    "years": "años"
   },
   "medications": {
     "title": "Medicamentos",
     "newMedication": "Nuevo Medicamento",
     "lowStock": "Stock Bajo",
     "expiringSoon": "Por Vencer",
-    "expired": "Vencido",
-    "name": "Nombre",
-    "dosage": "Dosis",
-    "expirationDate": "Fecha de Vencimiento",
-    "quantity": "Stock",
-    "reorderLevel": "Nivel de Reorden",
-    "form": "Forma"
+    "expired": "Vencido"
   },
   "vitalSigns": {
     "title": "Signos Vitales",
@@ -83,36 +81,27 @@
     "temperature": "Temperatura",
     "oxygenSaturation": "Saturación de Oxígeno",
     "respiratoryRate": "Frecuencia Respiratoria",
-    "measuredAt": "Fecha/Hora",
-    "heartRateUnit": "lpm"
+    "measuredAt": "Fecha de Medición",
+    "glucose": "Glucosa",
+    "noData": "Sin registros de signos vitales",
+    "selectPatient": "Seleccionar Paciente",
+    "selectPatientPlaceholder": "Selecciona un paciente...",
+    "history": "Historial",
+    "systolic": "Sistólica",
+    "diastolic": "Diastólica"
   },
   "carePlans": {
     "title": "Planes de Cuidado",
     "newCarePlan": "Nuevo Plan de Cuidado",
-    "planTitle": "Título del Plan",
-    "priority": "Prioridad",
-    "startDate": "Fecha de Inicio",
-    "endDate": "Fecha de Fin",
-    "progress": "Progreso",
-    "priorities": {
-      "LOW": "Baja",
-      "MEDIUM": "Media",
-      "HIGH": "Alta",
-      "CRITICAL": "Crítica"
-    },
-    "statuses": {
-      "DRAFT": "Borrador",
-      "ACTIVE": "Activo",
-      "ON_HOLD": "En Pausa",
-      "COMPLETED": "Completado",
-      "CANCELLED": "Cancelado"
-    }
+    "activate": "Activar",
+    "suspend": "Suspender",
+    "complete": "Completar"
   },
   "alerts": {
     "title": "Alertas",
-    "critical": "Crítica",
+    "critical": "Crítico",
     "warning": "Advertencia",
-    "info": "Información"
+    "acknowledge": "Reconocer"
   },
   "roles": {
     "ADMIN": "Administrador",
