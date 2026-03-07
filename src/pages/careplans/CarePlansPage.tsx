@@ -64,7 +64,7 @@ export function CarePlansPage() {
   });
 
   const createMutation = useMutation({
-    mutationFn: carePlanService.create,
+    mutationFn: (data: import('@/api/carePlanService').CreateCarePlanRequest) => carePlanService.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['care-plans'] });
       queryClient.invalidateQueries({ queryKey: ['careplans-count'] });
@@ -184,7 +184,7 @@ export function CarePlansPage() {
       )}
 
       <Dialog open={showForm} onOpenChange={setShowForm}>
-        <DialogContent className="max-w-md">
+        <DialogContent className="max-w-md bg-white">
           <DialogHeader>
             <DialogTitle>{t('carePlans.newCarePlan')}</DialogTitle>
           </DialogHeader>
@@ -196,7 +196,7 @@ export function CarePlansPage() {
                 onValueChange={(val) => { setSelectedPatientId(val); setValue('patientId', val); }}
               >
                 <SelectTrigger><SelectValue placeholder="Selecciona un paciente..." /></SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-white">
                   {patients?.content.map(p => (
                     <SelectItem key={p.id} value={p.id}>{p.fullName}</SelectItem>
                   ))}
@@ -217,7 +217,7 @@ export function CarePlansPage() {
                 <Label className="text-xs">{t('carePlans.priority')} *</Label>
                 <Select defaultValue="MEDIUM" onValueChange={(val) => setValue('priority', val)}>
                   <SelectTrigger><SelectValue /></SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="bg-white">
                     <SelectItem value="LOW">Baja</SelectItem>
                     <SelectItem value="MEDIUM">Media</SelectItem>
                     <SelectItem value="HIGH">Alta</SelectItem>

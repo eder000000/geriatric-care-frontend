@@ -1,27 +1,34 @@
 import apiClient from './client';
+
+export type MedicationForm = 'TABLET' | 'CAPSULE' | 'LIQUID' | 'INJECTION' | 'TOPICAL';
+
 export interface Medication {
   id: string;
   name: string;
-  genericName: string;
+  genericName: string | null;
   dosage: string;
-  form: string;
-  manufacturer: string;
+  form: MedicationForm;
+  manufacturer: string | null;
   quantityInStock: number;
+  reorderLevel: number;
   expirationDate: string | null;
   isLowStock: boolean;
   isExpired: boolean;
   isExpiringSoon: boolean;
+  isActive: boolean;
 }
+
 export interface CreateMedicationRequest {
   name: string;
   genericName?: string;
   dosage: string;
-  form?: string;
+  form: MedicationForm;
   manufacturer?: string;
-  reorderLevel?: number;
-  quantityInStock?: number;
-  expirationDate?: string;
+  quantityInStock: number;
+  reorderLevel: number;
+  expirationDate: string;
 }
+
 export const medicationService = {
   getMedications: async (): Promise<Medication[]> => {
     const response = await apiClient.get('/api/medications');

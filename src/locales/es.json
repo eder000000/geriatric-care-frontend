@@ -71,7 +71,22 @@
     "newMedication": "Nuevo Medicamento",
     "lowStock": "Stock Bajo",
     "expiringSoon": "Por Vencer",
-    "expired": "Vencido"
+    "name": "Nombre",
+    "genericName": "Nombre Gen00e9rico",
+    "form": "Forma",
+    "quantity": "Cantidad",
+    "reorderLevel": "Nivel de Reorden",
+    "expirationDate": "Fecha de Vencimiento",
+    "manufacturer": "Fabricante",
+    "dosage": "Dosis",
+    "expired": "Vencido",
+    "name": "Nombre",
+    "genericName": "Nombre Genérico",
+    "form": "Forma",
+    "quantity": "Cantidad",
+    "reorderLevel": "Nivel de Reorden",
+    "expirationDate": "Fecha de Vencimiento",
+    "manufacturer": "Fabricante"
   },
   "vitalSigns": {
     "title": "Signos Vitales",
@@ -95,7 +110,14 @@
     "newCarePlan": "Nuevo Plan de Cuidado",
     "activate": "Activar",
     "suspend": "Suspender",
-    "complete": "Completar"
+    "complete": "Completar",
+    "priority": "Prioridad",
+    "progress": "Progreso",
+    "startDate": "Fecha de Inicio",
+    "endDate": "Fecha de Fin",
+    "planTitle": "T00edtulo",
+    "priorities": { "LOW": "Baja", "MEDIUM": "Media", "HIGH": "Alta", "CRITICAL": "Cr00edtica" },
+    "statuses": { "DRAFT": "Borrador", "ACTIVE": "Activo", "ON_HOLD": "En Pausa", "COMPLETED": "Completado", "CANCELLED": "Cancelado" }
   },
   "alerts": {
     "title": "Alertas",

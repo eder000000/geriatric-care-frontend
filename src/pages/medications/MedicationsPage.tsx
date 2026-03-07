@@ -3,13 +3,14 @@ import { useTranslation } from 'react-i18next';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
-import { medicationService } from '@/api/medicationService';
+import { medicationService, MedicationForm } from '@/api/medicationService';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Pill, Plus, AlertTriangle } from 'lucide-react';
@@ -19,42 +20,53 @@ interface MedForm {
   name: string;
   genericName: string;
   dosage: string;
-  form: string;
+  form: MedicationForm;
   manufacturer: string;
   expirationDate: string;
   quantityInStock: string;
   reorderLevel: string;
 }
 
+const MEDICATION_FORMS: { value: MedicationForm; label: string }[] = [
+  { value: 'TABLET',    label: 'Tableta' },
+  { value: 'CAPSULE',   label: 'Cápsula' },
+  { value: 'LIQUID',    label: 'Líquido' },
+  { value: 'INJECTION', label: 'Inyección' },
+  { value: 'TOPICAL',   label: 'Tópico' },
+];
+
 export function MedicationsPage() {
   const { t } = useTranslation();
   const { isFamily } = useRole();
   const queryClient = useQueryClient();
   const [showForm, setShowForm] = useState(false);
+  const [selectedForm, setSelectedForm] = useState<MedicationForm>('TABLET');
 
   const { data: medications, isLoading } = useQuery({
     queryKey: ['medications'],
     queryFn: medicationService.getMedications,
   });
 
-  const { register, handleSubmit, reset } = useForm<MedForm>();
+  const { register, handleSubmit, reset } = useForm<MedForm>({
+    defaultValues: { form: 'TABLET' },
+  });
 
   const createMutation = useMutation({
     mutationFn: (data: MedForm) => medicationService.create({
       name: data.name,
       genericName: data.genericName || undefined,
       dosage: data.dosage,
-      form: data.form || undefined,
+      form: selectedForm,
       manufacturer: data.manufacturer || undefined,
-      expirationDate: data.expirationDate || undefined,
+      expirationDate: data.expirationDate,
       quantityInStock: Number(data.quantityInStock),
       reorderLevel: Number(data.reorderLevel),
     }),
     onSuccess: (med) => {
       queryClient.invalidateQueries({ queryKey: ['medications'] });
-      queryClient.invalidateQueries({ queryKey: ['medications-count'] });
       setShowForm(false);
       reset();
+      setSelectedForm('TABLET');
       toast.success(`Medicamento "${med.name}" creado correctamente`);
     },
     onError: () => toast.error('Error al crear el medicamento'),
@@ -92,6 +104,7 @@ export function MedicationsPage() {
               <TableRow>
                 <TableHead>{t('medications.name')}</TableHead>
                 <TableHead className="hidden md:table-cell">{t('medications.dosage')}</TableHead>
+                <TableHead className="hidden md:table-cell">{t('medications.form')}</TableHead>
                 <TableHead className="hidden lg:table-cell">{t('medications.expirationDate')}</TableHead>
                 <TableHead>{t('medications.quantity')}</TableHead>
                 <TableHead>{t('common.status')}</TableHead>
@@ -101,14 +114,14 @@ export function MedicationsPage() {
               {isLoading ? (
                 Array.from({ length: 3 }).map((_, i) => (
                   <TableRow key={i}>
-                    {Array.from({ length: 5 }).map((_, j) => (
+                    {Array.from({ length: 6 }).map((_, j) => (
                       <TableCell key={j}><Skeleton className="h-4 w-24" /></TableCell>
                     ))}
                   </TableRow>
                 ))
               ) : !medications?.length ? (
                 <TableRow>
-                  <TableCell colSpan={5} className="text-center py-12 text-gray-400">
+                  <TableCell colSpan={6} className="text-center py-12 text-gray-400">
                     <Pill className="w-8 h-8 mx-auto mb-2 opacity-40" />
                     <p className="text-sm">{t('common.noData')}</p>
                   </TableCell>
@@ -121,6 +134,9 @@ export function MedicationsPage() {
                       {med.genericName && <p className="text-xs text-gray-400">{med.genericName}</p>}
                     </TableCell>
                     <TableCell className="hidden md:table-cell text-sm text-gray-600">{med.dosage}</TableCell>
+                    <TableCell className="hidden md:table-cell text-sm text-gray-600">
+                      {MEDICATION_FORMS.find(f => f.value === med.form)?.label ?? med.form}
+                    </TableCell>
                     <TableCell className="hidden lg:table-cell text-sm text-gray-600">
                       {med.expirationDate ? new Date(med.expirationDate).toLocaleDateString() : '—'}
                     </TableCell>
@@ -142,7 +158,7 @@ export function MedicationsPage() {
       </Card>
 
       <Dialog open={showForm} onOpenChange={setShowForm}>
-        <DialogContent className="max-w-md">
+        <DialogContent className="max-w-md bg-white">
           <DialogHeader>
             <DialogTitle>{t('medications.newMedication')}</DialogTitle>
           </DialogHeader>
@@ -151,14 +167,27 @@ export function MedicationsPage() {
               <Label className="text-xs">{t('medications.name')} *</Label>
               <Input {...register('name', { required: true })} />
             </div>
+            <div>
+              <Label className="text-xs">{t('medications.genericName')}</Label>
+              <Input {...register('genericName')} />
+            </div>
             <div className="grid grid-cols-2 gap-3">
               <div>
                 <Label className="text-xs">{t('medications.dosage')} *</Label>
                 <Input placeholder="500mg" {...register('dosage', { required: true })} />
               </div>
               <div>
-                <Label className="text-xs">{t('medications.form')}</Label>
-                <Input placeholder="Tablet" {...register('form')} />
+                <Label className="text-xs">{t('medications.form')} *</Label>
+                <Select value={selectedForm} onValueChange={(v) => setSelectedForm(v as MedicationForm)}>
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent className="bg-white">
+                    {MEDICATION_FORMS.map(f => (
+                      <SelectItem key={f.value} value={f.value}>{f.label}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
               <div>
                 <Label className="text-xs">{t('medications.quantity')} *</Label>
@@ -170,11 +199,15 @@ export function MedicationsPage() {
               </div>
             </div>
             <div>
-              <Label className="text-xs">{t('medications.expirationDate')}</Label>
-              <Input type="date" {...register('expirationDate')} />
+              <Label className="text-xs">{t('medications.expirationDate')} *</Label>
+              <Input type="date" {...register('expirationDate', { required: true })} />
+            </div>
+            <div>
+              <Label className="text-xs">{t('medications.manufacturer')}</Label>
+              <Input {...register('manufacturer')} />
             </div>
             <div className="flex justify-end gap-2 pt-2">
-              <Button type="button" variant="outline" onClick={() => { setShowForm(false); reset(); }}>
+              <Button type="button" variant="outline" onClick={() => { setShowForm(false); reset(); setSelectedForm('TABLET'); }}>
                 {t('common.cancel')}
               </Button>
               <Button type="submit" disabled={createMutation.isPending}>

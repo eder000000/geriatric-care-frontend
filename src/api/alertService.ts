@@ -1,28 +1,35 @@
 import apiClient from './client';
+
 export interface Alert {
   id: string;
   patientId: string;
-  patientName: string;
-  type: string;
+  vitalSignId: string;
+  triggeredRuleId: string;
   severity: string;
   message: string;
-  isAcknowledged: boolean;
-  createdAt: string;
   triggeredAt: string;
+  acknowledgedAt: string | null;
+  acknowledgedBy: string | null;
+  resolvedAt: string | null;
+  status: string;
+  notes: string | null;
+  createdAt: string;
 }
+
 export interface AlertRule {
   id: string;
-  name: string;
-  type: string;
-  severity: string;
-  isActive: boolean;
-  description: string | null;
+  patientId: string | null;
   vitalSignType: string;
+  severity: string;
   comparisonOperator: string;
   thresholdValue: number;
   thresholdValueMax: number | null;
+  alertMessage: string;
+  isActive: boolean;
   cooldownMinutes: number;
+  createdAt: string;
 }
+
 export const alertService = {
   getActiveAlertRules: async (): Promise<AlertRule[]> => {
     const response = await apiClient.get('/api/alert-rules/active');
